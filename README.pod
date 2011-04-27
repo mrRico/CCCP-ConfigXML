@@ -1,0 +1,74 @@
+=head1 NAME
+
+CCCP::ConfigXML - Load XML config
+
+=head1 SYNOPSIS
+
+Load XML file. Example:
+
+    <!-- some_config.xml -->
+        <name>TestApp</name>
+        <component name="Controller::Foo">
+            <foo>bar</foo>
+        </component>
+        <model name="Baz">
+            <qux>xyzzy</qux>
+        </model>
+        
+        <foo>
+            <bar>x1</bar>
+            <bar>x2</bar>
+            <bar>x3</bar>
+            <bar>x4</bar>
+        </foo>
+
+In your code:
+
+    use CCCP::ConfigXML;
+    
+    # like XML::Bare
+    my $cnf = CCCP::ConfigXML->new( file => 'some_config.xml' );
+    
+    # or you can:
+    my $cnf = CCCP::ConfigXML->new( text => $xml_string );
+    
+    # now, you can read
+    $cnf->name;                   # TestApp
+    $cnf->component->foo;         # bar
+    $cnf->component->_attr->name; # Controller::Foo
+    
+    # and can set
+    $cnf->name('NewTestApp');     # 1
+    $cnf->name;                   # NewTestApp
+    
+    # loop element
+    print "$_" for @{$cnf->foo->bar};
+    
+=head1 DESCRIPTION
+
+Using L<XML::Bare> for parsing and B<AUTOLOAD> to access.
+
+=head1 NOTE
+
+You can't set new values for attributes.
+After set new value for element, attributes  are lost.
+
+=head1 SEE ALSO
+
+=over 4
+
+=item *
+
+L<XML::Bare>
+
+=item *
+
+test in t/ as example
+
+=back
+
+=head1 AUTHOR
+
+Ivan Sivirinov E<lt>catamoose [at] yandex.ruE<gt>
+
+=cut

@@ -1,0 +1,7 @@
+Changes
+Makefile.PL
+MANIFEST
+README.pod
+t/CCCP-ConfigXML.t
+lib/CCCP/ConfigXML.pm
+lib/CCCP/ConfigXML/Attributes.pm
