@@ -30,3 +30,18 @@ sub AUTOLOAD {
 
 1;
 __END__
+=encoding utf-8
+
+=head1 NAME
+
+CCCP::ConfigXML::Attributes - attribute instace for CCCP::ConfigXML 
+    
+=head1 SEE ALSO
+
+L<CCCP::ConfigXML>
+
+=head1 AUTHOR
+
+Ivan Sivirinov E<lt>catamoose [at] yandex.ruE<gt>
+
+=cut

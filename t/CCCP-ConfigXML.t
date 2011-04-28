@@ -4,7 +4,8 @@ use lib '../lib';
 use Test::More;
 
     pass('*' x 10);
-
+    
+    use_ok('XML::Bare');
     use_ok('CCCP::ConfigXML');
 
     my $xml_str = '    <!-- some_config.xml -->

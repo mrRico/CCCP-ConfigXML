@@ -152,8 +152,10 @@ Using L<XML::Bare> for parsing and B<AUTOLOAD> to access.
 
 =head1 NOTE
 
-You can't set new values for attributes.
-After set new value for element, attributes  are lost.
+Config is the basis of applications and values ​​in it are known in advance.
+Config values ​​should not be checked for validity or existence.
+Therefore, this module does not contain any verification of the existence of values​​.
+Use only read access.
 
 =head1 SEE ALSO
 
