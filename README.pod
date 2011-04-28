@@ -52,7 +52,7 @@ Using L<XML::Bare> for parsing and B<AUTOLOAD> to access.
 
 Config is the basis of applications and values ​​in it are known in advance.
 Config values ​​should not be checked for validity or existence.
-Therefore, this module does not contain any verification of the existence of values​​.
+Therefore, this module does not contain any verification of the existence of values.
 Use only read access.
 
 =head1 SEE ALSO
