@@ -6,71 +6,45 @@ CCCP::ConfigXML - Load XML config
 
 Load XML file. Example:
 
-    <!-- some_config.xml -->
-        <name>TestApp</name>
-        <component name="Controller::Foo">
-            <foo>bar</foo>
-        </component>
-        <model name="Baz">
-            <qux>xyzzy</qux>
-        </model>
-        
+    # foo_config.xml
         <foo>
-            <bar>x1</bar>
-            <bar>x2</bar>
-            <bar>x3</bar>
-            <bar>x4</bar>
+            <name>TestApp</name>
+            <component name="Controller::Foo">
+                <foo>bar</foo>
+            </component>
+            <model name="Baz">
+                <qux>Waah!</qux>
+            </model>
         </foo>
-
+    # bar_config.xml    
+        <bar>
+            <val>x1</val>
+            <val>x2</val>
+            <val>x3</val>
+            <val>x4</val>
+        </bar>
+    # baz_config.xml    
+        <foo>
+            <model name="Baz">
+                <qux>Go!</qux>
+            </model>
+        </foo>
+        
 In your code:
 
     use CCCP::ConfigXML;
     
     # like XML::Bare
-    my $cnf = CCCP::ConfigXML->new( file => 'some_config.xml' );
-    
-    # or you can:
-    my $cnf = CCCP::ConfigXML->new( text => $xml_string );
+    my $cnf = CCCP::ConfigXML->new( file => ['foo_config.xml', 'bar_config.xml'] );
     
     # now, you can read
-    $cnf->name;                   # TestApp
-    $cnf->component->foo;         # bar
-    $cnf->component->_attr->name; # Controller::Foo
-    
-    # and can set
-    $cnf->name('NewTestApp');     # 1
-    $cnf->name;                   # NewTestApp
-    
-    # loop element
-    print "$_" for @{$cnf->foo->bar};
+    $cnf->{foo}->{name}->{value};                        # TestApp
+    $cnf->{foo}->{component}->{foo}->{value};            # bar
+    $cnf->{foo}->{component}->{name}->{value};           # Controller::Foo    
+    $cnf->{foo}->{model}->{qux}->{value}                 # Go! # overloading
     
 =head1 DESCRIPTION
 
-Using L<XML::Bare> for parsing and B<AUTOLOAD> to access.
-
-=head1 NOTE
-
-Config is the basis of applications and values in it are known in advance.
-Config values should not be checked for validity or existence.
-Therefore, this module does not contain any verification of the existence of values.
-Use only read access.
-
-=head1 SEE ALSO
-
-=over 4
-
-=item *
-
-L<XML::Bare>
-
-=item *
-
-test in t/ as example
-
-=back
-
-=head1 AUTHOR
-
-Ivan Sivirinov E<lt>catamoose [at] yandex.ruE<gt>
+Simple and usefull wrapper on L<XML::Bare> and L<Hash::Merge::Simple>.
 
 =cut

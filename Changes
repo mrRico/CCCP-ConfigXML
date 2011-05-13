@@ -4,3 +4,5 @@ Revision history for Perl extension CCCP::ConfigXML.
 	- original version; created by h2xs 1.23 with options
 		-AX CCCP::ConfigXML
 
+0.02  Fri May 13 12:05:18 2011
+    - version 0.01 - depricate.
