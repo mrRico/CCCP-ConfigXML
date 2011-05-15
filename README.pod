@@ -1,6 +1,6 @@
 =head1 NAME
 
-CCCP::ConfigXML - Load XML config
+CCCP::ConfigXML - load XML config files or string
 
 =head1 SYNOPSIS
 
@@ -13,7 +13,7 @@ Load XML file. Example:
                 <foo>bar</foo>
             </component>
             <model name="Baz">
-                <qux>Waah!</qux>
+                <qux>Stop!</qux>
             </model>
         </foo>
     # bar_config.xml    
@@ -25,7 +25,7 @@ Load XML file. Example:
         </bar>
     # baz_config.xml    
         <foo>
-            <model name="Baz">
+            <model name="Bar">
                 <qux>Go!</qux>
             </model>
         </foo>
@@ -33,6 +33,8 @@ Load XML file. Example:
 In your code:
 
     use CCCP::ConfigXML;
+    # or if you wont singletone
+    use CCCP::ConfigXML as => 'singletone';
     
     # like XML::Bare
     my $cnf = CCCP::ConfigXML->new( file => ['foo_config.xml', 'bar_config.xml'] );
@@ -41,10 +43,32 @@ In your code:
     $cnf->{foo}->{name}->{value};                        # TestApp
     $cnf->{foo}->{component}->{foo}->{value};            # bar
     $cnf->{foo}->{component}->{name}->{value};           # Controller::Foo    
-    $cnf->{foo}->{model}->{qux}->{value}                 # Go! # overloading
+    $cnf->{foo}->{model}->{qux}->{value}                 # Stop!
+    
+    $cnf->add_file(baz_config.xml);
+    $cnf->{foo}->{model}->{qux}->{value}                 # Go!
     
 =head1 DESCRIPTION
 
 Simple and usefull wrapper on L<XML::Bare> and L<Hash::Merge::Simple>.
+
+=head1 METHODS
+
+=head2 new(file => [...list xml-files...], text => [...list xml-string...], @param_parse)
+
+Constructor. All arguments are optional.
+@param_parse - another parametrs for L<XML::Bare>
+
+=head2 add_file($file[, @param_parse])
+
+Extend instance from $file.
+
+=head2 add_text($xml_str[, @param_parse])
+
+Extend instance from xml-string.
+
+=head1 AUTHOR
+
+mr.Rico <catamoose at yandex.ru>
 
 =cut

@@ -5,7 +5,6 @@ WriteMakefile(
     VERSION_FROM      => 'lib/CCCP/ConfigXML.pm',
     PREREQ_PM         => {
         'XML::Bare'             => 0,
-        'Carp'                  => 0,
         'Hash::Merge::Simple'   => 0,
         'namespace::autoclean'  => 0
     },
