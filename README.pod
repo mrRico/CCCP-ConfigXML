@@ -33,7 +33,7 @@ Load XML file. Example:
 In your code:
 
     use CCCP::ConfigXML;
-    # or if you wont singletone
+    # or if you want singletone
     use CCCP::ConfigXML as => 'singletone';
     
     # like XML::Bare
@@ -66,6 +66,22 @@ Extend instance from $file.
 =head2 add_text($xml_str[, @param_parse])
 
 Extend instance from xml-string.
+
+=head1 PACKAGE VARIABLES
+
+=head2 $CCCP::ConfigXML::like_singletone
+
+By default 0.
+Set true when
+
+    use CCCP::ConfigXML as => 'singletone';
+    # or
+    use CCCP::ConfigXML;
+    CCCP::ConfigXML->import(as => 'singletone');
+    # or :)
+    $CCCP::ConfigXML::like_singletone = 1;
+
+When value is true, then C<new> returns a singleton if this is possible.
 
 =head1 AUTHOR
 
